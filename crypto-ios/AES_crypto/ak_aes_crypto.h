@@ -26,6 +26,8 @@ typedef struct
     cf_aes_context *ccm_ctx;
 } ak_aes_context;
 
+void c_print(uint8_t *vli, unsigned int size);
+
 // -------------------------------------------------------------------
 
 void ak_aes_init(ak_aes_context *ctx,

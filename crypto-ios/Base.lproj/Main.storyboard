@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N3f-pK-ABi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N3f-pK-ABi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -60,6 +60,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gmw-bT-Re9" userLabel="message status view">
+                                <rect key="frame" x="0.0" y="64" width="375" height="5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="sNn-UZ-Jh0"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B88-1g-Ife">
                                 <rect key="frame" x="100.5" y="310" width="173" height="47"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
@@ -79,11 +91,14 @@
                             <constraint firstItem="B88-1g-Ife" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="35O-3z-Bes"/>
                             <constraint firstItem="B88-1g-Ife" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ix-Oq-ks6"/>
                             <constraint firstItem="dGe-Qf-IJd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Vy-in-K75"/>
+                            <constraint firstItem="Gmw-bT-Re9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7x7-kR-TbC"/>
                             <constraint firstItem="zKM-AM-3pD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="20" id="FEI-X7-3TZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dns-2I-GEm" secondAttribute="trailing" constant="16" id="M9E-Xn-grf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gmw-bT-Re9" secondAttribute="trailing" id="OgU-Qw-eT9"/>
                             <constraint firstItem="dns-2I-GEm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eLQ-t0-EsH"/>
                             <constraint firstItem="dGe-Qf-IJd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="h2L-g5-UqO"/>
                             <constraint firstItem="zKM-AM-3pD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="20" id="maE-6o-YCi"/>
+                            <constraint firstItem="Gmw-bT-Re9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sNe-00-cg1"/>
                             <constraint firstItem="dns-2I-GEm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="10" id="tpX-qI-aCa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -91,6 +106,7 @@
                     <navigationItem key="navigationItem" id="v9e-6K-KJw"/>
                     <connections>
                         <outlet property="initSecureConnectButton" destination="B88-1g-Ife" id="OcA-Z9-vpb"/>
+                        <outlet property="messageStatusView" destination="Gmw-bT-Re9" id="zc5-fF-UXv"/>
                         <outlet property="sendDataButton" destination="dGe-Qf-IJd" id="83r-pl-Ws1"/>
                         <outlet property="statusView" destination="zKM-AM-3pD" id="4B4-bM-thb"/>
                         <outlet property="textView" destination="dns-2I-GEm" id="9iG-C0-axt"/>

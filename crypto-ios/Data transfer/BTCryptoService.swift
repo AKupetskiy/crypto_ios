@@ -50,6 +50,7 @@ class BTCryptoService: SecretKeyEstablishmentProtocol {
     
     //MARK: ECDHProtocol
     func getLocalPubKey() -> Data {
+        print("localPrivKey = " + dh.crypter.privateKey.hexValue)
         print("localPubKey = " + dh.crypter.publicKey.hexValue)
         return dh.crypter.publicKey!
     }
@@ -60,7 +61,10 @@ class BTCryptoService: SecretKeyEstablishmentProtocol {
     }
     
     func prepareLocalSignature() -> Data {
-        return dh.prepareLocalSignature()
+        let localSig = dh.prepareLocalSignature()
+        print("local signature = " + localSig.hexValue)
+        
+        return localSig
     }
     
     func verifyRemoteSignature(_ signature: Data) -> Bool {

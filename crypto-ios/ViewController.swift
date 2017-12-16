@@ -14,6 +14,7 @@ class ViewController: UIViewController, BTTransportServiceDelegate {
     @IBOutlet weak var initSecureConnectButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var messageStatusView: UIView!
     
     var transportService: BTTransportService!
     
@@ -57,12 +58,33 @@ class ViewController: UIViewController, BTTransportServiceDelegate {
         initSecureConnectButton.isEnabled = false
     }
     
+    func blinkStatusView(forMessage message:String) {
+        if message == "FFFF" {
+            UIView.animate(withDuration: 0.4, animations: { [unowned self] in
+              self.messageStatusView.backgroundColor = UIColor.green
+            })
+            
+        } else {
+            UIView.animate(withDuration: 0.4, animations: { [unowned self] in
+                self.messageStatusView.backgroundColor = UIColor.red
+            })
+        }
+        
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
+            UIView.animate(withDuration: 0.4, animations: {
+                self.messageStatusView.backgroundColor = UIColor.clear
+            })
+        }
+    }
+    
     @IBAction func startSecureConnection(button: UIButton) {
         transportService.instantiateSecureConnection()
     }
     
     @IBAction func sendPressed(button: UIButton) {
         transportService.sendData(textView.text)
+        hideKeyboard()
     }
     
     func service(_ service: BTTransportService, didChangeState state: connectionState) {
@@ -108,7 +130,7 @@ class ViewController: UIViewController, BTTransportServiceDelegate {
     }
     
     func service(_ service: BTTransportService, didReceivedData data: String) {
-        textView.text = "newData: " + data
+        blinkStatusView(forMessage: data)
     }
 }
 

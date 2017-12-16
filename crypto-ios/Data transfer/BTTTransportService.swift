@@ -99,11 +99,14 @@ class BTTransportService: Transportable, BTConversationDelegate {
     func device(_ device: BTWorkable, didReceived bytes: Data) {
         //unmarshall
         
-        if let decryptedData = cryptoService.decryptData(bytes) {
-            let message = marshaller.unmarshall(decryptedData)
-            
-            self.delegate?.service(self, didReceivedData: message)
-        }
+        
+//        if let decryptedData = cryptoService.decryptData(bytes) {
+//            let message = marshaller.unmarshall(bytes)
+        let subData = bytes.subdata(in: Range(0..<4))
+        let message = String(bytes: subData, encoding: .utf8)!
+        
+        self.delegate?.service(self, didReceivedData: message)
+//        }
     }
     
     func device(_ device: BTWorkable, receivedPubKey key: Data) {

@@ -111,6 +111,20 @@ extension BTCentralDevice {
         print("failed to connect to \(peripheral)")
         self.delegate?.device(self, didConnectedToPeriptheral: false)
     }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if self.peripheral == peripheral {
+            self.peripheral = nil
+            self.delegate?.device(self, didConnectedToPeriptheral: false)
+            
+            let when = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: when) { [unowned self] in
+                self.centralManager.scanForPeripherals(withServices: nil, options: nil)
+                self.delegate?.device(startedSearchingPeripherals: self)
+            }
+            
+        }
+    }
 }
 
 //MARK: - CBPeripheral delegate

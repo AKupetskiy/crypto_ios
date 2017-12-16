@@ -1493,15 +1493,22 @@ static uint64_t Curve_n_384[6] = {0xECEC196ACCC52973, 0x581A0DB248B0A77A, 0xC763
     uint8_t l_private[_bytes];
         
     BOOL success = ecc_make_key(l_public, l_private, _numDigits, _curve_p, _curve_n, _curve_Gx, _curve_Gy);
+//#warning DEBUG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        _publicKey = [NSData dataWithBytes:"\x02\xfd\x5b\x59\x36\xd7\xf1\x72\x10\x99\x2e\xc1\x8d\x57\xbd\xd9\xf8\xb3\xc1\x4c\x94\x49\x4a\x29\xb4\x6b\xfa\xb3\x5b\xf9\x14\x5a\xbe" length:_bytes + 1];
+//        _privateKey = [NSData dataWithBytes:"\xce\x87\x83\xf3\x93\xfa\x05\x7c\x4f\xdc\xd8\x9d\x29\x55\xbe\x08\x7e\xb1\x51\xad\x92\x7d\xb0\x92\x5f\x15\x26\x0b\x36\x10\x3c\x00" length:_bytes];
+//
     
-    _publicKey = [NSData dataWithBytes:l_public length:_bytes + 1];
-    _privateKey = [NSData dataWithBytes:l_private length:_bytes];
+        _publicKey = [NSData dataWithBytes:l_public length:_bytes + 1];
+        _privateKey = [NSData dataWithBytes:l_private length:_bytes];
     
     return success;
 }
 
 
 - (NSData*)sharedSecretForPublicKey: (NSData*)otherPublicKey {
+//#warning DEBUG!!!!!!!!!!!!!!!!!!
+//    return [NSData dataWithBytes:"\x61\xf3\xd9\xdd\xe5\x90\x9b\x35\x92\x88\x39\x39\xfd\x07\xf2\x25\xd3\x0a\x0f\xfe\x7b\x52\x7e\x35\xc4\xbe\xe2\xd4\x10\x65\x81\xfa" length:32];
+//
     if (!_privateKey) {
         [NSException raise:@"Missing Key" format:@"Cannot create shared secret without a private key"];
     }
